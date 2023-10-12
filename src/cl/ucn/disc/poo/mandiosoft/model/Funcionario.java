@@ -54,6 +54,11 @@ public abstract class Funcionario {
         this.rut = rut;
         this.nombre = nombre;
         this.direccion = direccion;
+
+        // validacion de sueldo
+        if (sueldoBase <= 0) {
+            throw new IllegalArgumentException("El Sueldo debe ser positivo");
+        }
         this.sueldoBase = sueldoBase;
     }
 
@@ -122,8 +127,20 @@ public abstract class Funcionario {
             throw new IllegalArgumentException("Funcionario ya se encuentra en Proyecto");
         }
 
+        // validation of number of Proyectos
+        if (this.getNumeroDeProyectos() == 5) {
+            throw new IllegalArgumentException("Funcionario ya tiene 5 proyectos");
+        }
+
         // add the proyecto
         this.proyectos.add(proyecto);
+    }
+
+    /**
+     * @return el numero de proyectos en que trabaja el Funcionario.
+     */
+    public int getNumeroDeProyectos() {
+        return this.proyectos.size();
     }
 
 }
