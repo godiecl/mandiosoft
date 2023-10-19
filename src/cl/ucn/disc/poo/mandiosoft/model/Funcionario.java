@@ -15,6 +15,11 @@ import java.util.List;
 public abstract class Funcionario {
 
     /**
+     * Constante: sueldo minimo.
+     */
+    private final int SUELDO_MINIMO = 420 * 1000;
+
+    /**
      * RUT.
      */
     private final String rut;
@@ -48,6 +53,7 @@ public abstract class Funcionario {
      * @param sueldoBase
      */
     public Funcionario(String rut, String nombre, String direccion, double sueldoBase) {
+        // creacion de la lista de proyectos
         this.proyectos = new ArrayList<>();
 
         // TODO: add validations
@@ -56,8 +62,8 @@ public abstract class Funcionario {
         this.direccion = direccion;
 
         // validacion de sueldo
-        if (sueldoBase <= 0) {
-            throw new IllegalArgumentException("El Sueldo debe ser positivo");
+        if (sueldoBase < SUELDO_MINIMO) {
+            throw new IllegalArgumentException("El sueldo base no puede ser menor al sueldo minimo por ley");
         }
         this.sueldoBase = sueldoBase;
     }
@@ -127,9 +133,9 @@ public abstract class Funcionario {
             throw new IllegalArgumentException("Funcionario ya se encuentra en Proyecto");
         }
 
-        // validation of number of Proyectos
-        if (this.getNumeroDeProyectos() == 5) {
-            throw new IllegalArgumentException("Funcionario ya tiene 5 proyectos");
+        // validate the five rule
+        if (this.proyectos.size() == 5) {
+            throw new IllegalArgumentException("No se permite trabajar en mas de cinco proyectos");
         }
 
         // add the proyecto
@@ -137,10 +143,9 @@ public abstract class Funcionario {
     }
 
     /**
-     * @return el numero de proyectos en que trabaja el Funcionario.
+     * @return the list of Proyecto.
      */
-    public int getNumeroDeProyectos() {
-        return this.proyectos.size();
+    public List<Proyecto> getProyectos() {
+        return this.proyectos;
     }
-
 }

@@ -27,17 +27,24 @@ public final class Proyecto {
     private final int duracionMeses;
 
     /**
+     * Costo total del Proyecto.
+     */
+    private final double costoTotal;
+
+    /**
      * The Constructor.
      *
      * @param codigo
      * @param nombre
      * @param duracionMeses
+     * @param costoTotal
      */
-    public Proyecto(String codigo, String nombre, int duracionMeses) {
+    public Proyecto(String codigo, String nombre, int duracionMeses, double costoTotal) {
         // TODO: add validations
         this.codigo = codigo;
         this.nombre = nombre;
         this.duracionMeses = duracionMeses;
+        this.costoTotal = costoTotal;
     }
 
     /**
@@ -60,5 +67,12 @@ public final class Proyecto {
     public int getDuracionMeses() {
         return this.duracionMeses;
     }
-    
+
+    /**
+     * @return the costo total.
+     */
+    public double getCostoTotal() {
+        return this.costoTotal;
+    }
+
 }
