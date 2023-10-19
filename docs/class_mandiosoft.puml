@@ -54,6 +54,7 @@ package cl.ucn.disc.poo.mandiosoft {
             - {static} codigo: String
             - nombre: String
             - duracionMeses: int
+            - costoTotal: double
             + Proyecto(codigo: String, nombre: String, duracionMeses: String)
             + getCodigo(): String
             + getNombre(): String
