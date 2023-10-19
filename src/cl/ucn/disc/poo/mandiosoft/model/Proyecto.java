@@ -32,6 +32,11 @@ public final class Proyecto {
     private final double costoTotal;
 
     /**
+     * El Ingeniero del Proyecto.
+     */
+    private Ingeniero ingeniero;
+
+    /**
      * The Constructor.
      *
      * @param codigo
@@ -43,8 +48,18 @@ public final class Proyecto {
         // TODO: add validations
         this.codigo = codigo;
         this.nombre = nombre;
-        this.duracionMeses = duracionMeses;
-        this.costoTotal = costoTotal;
+        // validacion de numero de meses minimo
+        if (duracionMeses < 1) {
+            throw new IllegalArgumentException("La duracion minima de un proyecto no puede ser inferior a 1 mes");
+        } else {
+            this.duracionMeses = duracionMeses;
+        }
+        // validar costo
+        if (costoTotal <= 0) {
+            throw new IllegalArgumentException("El costo total no puede ser menor a 0");
+        } else {
+            this.costoTotal = costoTotal;
+        }
     }
 
     /**
@@ -73,6 +88,33 @@ public final class Proyecto {
      */
     public double getCostoTotal() {
         return this.costoTotal;
+    }
+
+    /**
+     * @return el costo mensual.
+     */
+    public double getCostoMensual() {
+        return this.costoTotal / this.duracionMeses;
+    }
+
+    /**
+     * @return the Ingeniero.
+     */
+    public Ingeniero getIngeniero() {
+        return this.ingeniero;
+    }
+
+    /**
+     * Asigna un Ingeniero al proyecto.
+     *
+     * @param ingeniero a asignar.
+     */
+    public void setIngeniero(Ingeniero ingeniero) {
+        // validacion de existencia del Ingeniero.
+        if (ingeniero == null) {
+            throw new IllegalArgumentException("No se permite un Proyecto sin Ingeniero");
+        }
+        this.ingeniero = ingeniero;
     }
 
 }
