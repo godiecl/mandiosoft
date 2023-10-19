@@ -17,7 +17,12 @@ public abstract class Funcionario {
     /**
      * Constante: sueldo minimo.
      */
-    private final int SUELDO_MINIMO = 420 * 1000;
+    private static final int SUELDO_MINIMO = 420 * 1000;
+
+    /**
+     * Constante: numero maximo de proyectos.
+     */
+    private static final int NUMERO_MAXIMO_PROYECTOS = 5;
 
     /**
      * RUT.
@@ -134,7 +139,7 @@ public abstract class Funcionario {
         }
 
         // validate the five rule
-        if (this.proyectos.size() == 5) {
+        if (this.proyectos.size() == NUMERO_MAXIMO_PROYECTOS) {
             throw new IllegalArgumentException("No se permite trabajar en mas de cinco proyectos");
         }
 
